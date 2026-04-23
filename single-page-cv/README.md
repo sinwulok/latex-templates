@@ -1,4 +1,4 @@
-# sw-single-page-cv-latex-templates
+# sw-single-page-cv
 
 單頁 CV / 履歷的 LaTeX 模板。  
 LaTeX templates for single-page CV and resume documents.
@@ -73,5 +73,4 @@ The template generates a professional single-page CV/resume in PDF format.
 
 ## 相關連結 | Related Links
 
-- [專案 Catalog | Project Catalog](../../catalog/index.md)
 - [Repository 根目錄 | Repository Root](../../README.md)
