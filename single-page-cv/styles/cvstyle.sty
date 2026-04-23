@@ -1,0 +1,206 @@
+% ------------ HEADER AND FOOTER STYLES ------------
+\RequirePackage{fancyhdr} 
+\pagestyle{fancy} % Activates the custom header and footer settings
+
+\fancyhf{} % Clear default header and footer styles
+\setlength{\footskip}{10pt} % A more generous value
+
+% ------------ CUSTOM SETTINGS ------------
+% By default fancyhdr often includes a thin line
+% Sets the width of the horizontal rule (line) 
+% below the header to 0 points (i.e., no line).
+\renewcommand{\headrulewidth}{0pt} % removes header line/underline
+\renewcommand{\footrulewidth}{0pt} % Same with headrulewidth
+
+% ------------ MARGIN ADJUSTMENTS ------------
+\addtolength{\oddsidemargin}{-0.5in}  % remove printing margin
+\addtolength{\evensidemargin}{-0.5in} % remove printing margin 
+\addtolength{\topmargin}{-0.5in}      % 
+\addtolength{\textwidth}{1.0in}       % text area max width align print wide
+\addtolength{\textheight}{1.0in}      % text area align print height
+
+% ------------ CUSTOM SECTION STYLE ------------
+% Main section formatting %
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+ 
+% Subsection formatting %
+\titleformat{\subsection}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{\hspace{-.15in}}{0em}{}[\color{black}\vspace{-8pt}]
+
+% Define a contact icon with 3 arguments: icon name, link, display text
+\newcommand{\contactRow}[3]{%
+  \faIcon{#1}~\href{#2}{\underline{#3}}\hspace{5pt}%
+  }
+
+% -------------------- CUSTOM ITEMIZE COMMANDS --------------------
+% 1. 定義新的列表環境名稱 (如果需要，以便獨立控制)
+\newlist{resumesubheadings}{itemize}{1} % 用於包裹 Experience/Education/Project 的列表
+\newlist{resumeitems}{itemize}{1}       % 用於包裹具體描述 (子彈點) 的列表
+
+% 2. 統一設定列表環境樣式
+% 設置主要列表 (resumesubheadings): 用於 Experience/Education/Project
+% 您的需求: leftmargin=0in, label={}
+\setlist[resumesubheadings]{
+    label={},             % 無項目符號
+    leftmargin=0pt,       % 左邊距為 0
+    itemsep=5pt,          % 項目之間間距 (沿用原註釋代碼，或根據需要調整)
+    topsep=2pt,           % 列表頂部間距 (沿用原註釋代碼，或根據需要調整)
+    parsep=2pt,           % 段落間距為 0
+    %partopsep=0pt         % 列表前後間距為 0
+}
+
+% 設置項目列表 (resumeitems): 用於具體描述 (子彈點)
+% 您的需求: leftmargin=0.2in (約 1.5em), 且 \resumeItemListEnd 有 \vspace{-5pt}
+\setlist[resumeitems]{
+    label=\textbullet,    % 標準圓點 (或使用 \label=\tiny{$\bullet$} 讓圓點更小)
+    leftmargin=0.2in,     % 您的客製化邊距
+    itemsep=0pt,          % 項目之間間距 (沿用原註釋代碼，或根據需要調整)
+    topsep=2pt,           % 列表頂部間距為 0
+    %parsep=0pt,           % 段落間距為 0
+    %partopsep=0pt         % 列表前後間距為 0
+}
+
+% 3. 將宏命令導向新的環境
+% -------------------- CUSTOM SUBJECTS COMMANDS --------------------
+% Define commands for starting and ending a list of subheadings %
+\newcommand{\resumeSubHeadingListStart}{\begin{resumesubheadings}}
+\newcommand{\resumeSubHeadingListEnd}{\end{resumesubheadings}}
+
+% Define commands for starting and ending a list of items %
+% 注意: \vspace{-5pt} 必須放在宏命令外部，不能放在 \setlist 內，所以它保留在 \newcommand 裡
+\newcommand{\resumeItemListStart}{\begin{resumeitems}}
+\newcommand{\resumeItemListEnd}{\end{resumeitems}\vspace{-5pt}}
+
+% Redefine the label for second level of itemize %
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$} 
+
+% Define a custom command for a resume item %
+% 注意: resumeItem 內部的 \vspace{-2pt} 屬於內容級間距，可以保留
+\newcommand{\resumeItem}[1]{% Add vspace for each items
+  \item\small{ {#1 \vspace{-2pt}} } %
+}
+
+% Define a custom command for a resume sub-item %
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+% ==========
+% 提示: 
+% \makeResumeEntry 是底層封裝，確保了所有 entry 之間的表格間距 (tabular) 一致。
+% 若需調整全局縮進，應修改 \makeResumeEntry 內的預留寬度。
+% ==========
+% === CUSTOM COMMANDS OF ALL HEADINGS ===
+% 輔助命令: 處理所有 Resume/CV 條目的通用排版設置
+% 參數 #1: 表格內容 (即所有 \textbf, \textit, \\)
+% 參數 #2: 項目開頭的垂直間距 (例如: -2pt)
+% 參數 #3: 項目結尾的垂直間距 (例如: -7pt)
+% 參數 #4: 是否強制在開頭使用 \item (通常為 true，除非特殊需求)
+\newcommand{\makeResumeEntry}[4]{%
+    \ifstrequal{#4}{true}{\item}{}% % 檢查是否需要 \item
+    \vspace{#2}% % 應用項目開頭的垂直間距 (如 -2pt)
+    
+    % 1. 確保表格內容從最左側開始 (無列間距)
+    \setlength{\tabcolsep}{0pt}%
+    \setlength{\arraycolsep}{0pt}%
+    
+    % 2. 創建全寬度表格
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        #1 % 表格內容 (由主命令提供，包含所有 \textbf, \textit, \\)
+    \end{tabular*}%
+    
+    % 3. 重置間距到預設值
+    \setlength{\tabcolsep}{6pt}%
+    \setlength{\arraycolsep}{5pt}%
+    
+    % 4. 結尾垂直間距
+    \vspace{#3}% % 應用項目結尾的垂直間距 (如 -7pt)
+}
+
+% --- EDUCATION ---
+% Define a custom command for a compact education heading with 2 arguments %
+\newcommand{\educationHeading}[2]{ %
+    \makeResumeEntry{%
+        {#1} & \textit{#2} \\ % 左: 學校 + 學位, 右: 日期
+    }{-2pt}{-7pt}{true}%
+}
+
+% --- PROJECTS ---
+
+% 定義升級版的項目標題指令 (3個參數)
+% #1: Project Name (項目名稱)
+% #2: Tech Stack / Skills (技術棧/技能)
+% #3: Date / Link (日期或網址)
+\newcommand{\resumeProjectHeading}[3]{ %
+    \makeResumeEntry{%
+        \scalebox{0.9}{\textbf{#1}} $|$ \footnotesize\emph{#2} & \textit{#3} \\
+    }{-1pt}{-5pt}{true}%
+}
+
+% 定義帶有超連結的項目標題指令 (4個參數 - 適合有 GitHub 連結的項目)
+% 指令：自動處理 項目名、連結、技術棧、日期
+% #1: Project Name (粗體)
+% #2: Project URL (超連結)
+% #3: Link Display Text (例如: GitHub, Demo, Paper)
+% #4: Tech Stack (自動縮小且斜體)
+% #5: Date (右對齊斜體)
+\newcommand{\resumeProjectHeadingWithLink}[5]{ %
+    \makeResumeEntry{%
+        \scalebox{0.9}{\textbf{#1}} $|$ \href{#2}{\underline{#3}} $|$ \footnotesize\emph{#4} & \textit{#5} \\
+    }{-1pt}{-5pt}{true}%
+}
+
+% --- EXPERIENCE SECTION COMMANDS ---
+
+% 1. 基礎副標題 (resumeSubSubheading)
+% 用於單一項目下的補充說明（如：證書、GPA 或特定細分職責）。
+% 注意：為了對齊整體佈局，這裡必須使用固定寬度 0.97\textwidth。
+\newcommand{\resumeSubSubheading}[2]{ %
+    \item % 繼承 itemize 環境的縮進
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r} 
+        \textit{\small#1} & \textit{\small #2} \\ % 斜體顯示：左側為說明，右側為日期/地點
+    \end{tabular*}\vspace{-7pt}
+}
+
+% 2. 標準單職位標題 (resumeSubheading)
+% 適用於「一個職位對應一家公司」的標準情況。
+% 參數: #1=職位, #2=日期, #3=公司名稱, #4=地點
+\newcommand{\resumeSubheading}[4]{ %
+    \makeResumeEntry{%
+        \textbf{#1} & \textit{#2} \\[-0.2em] % 加粗職位，收緊與下方公司的垂直間距
+        \textit{\small#3} & \textit{\small #4} \\ % 斜體顯示公司與地點
+    }{0pt}{0pt}{true}%
+}
+
+% 3. 跨公司/合併職位標題 (resumeMultiCompanySubheading)
+% 適用於你在同一個職位下，同時服務於兩家關聯公司。
+% 參數: #1=職位, #2=日期, #3=公司A, #4=地點A, #5=公司B, #6=地點B
+\newcommand{\resumeMultiCompanySubheading}[6]{ %
+    \makeResumeEntry{%
+        \textbf{#1} & \textit{#2} \\[-0.2em] % 職位與日期
+        \textit{\small#3} & \textit{\small #4} \\[-0.5em] % 第一家公司 (收緊與第二家公司的間距)
+        \textit{\small#5} & \textit{\small #6} \\ % 第二家公司
+    }{0pt}{-5pt}{true}%
+}
+
+% -------------------- TECHNICAL-STACK --------------------
+% Define new enviroment - tech stack
+\newenvironment{techstack}{%
+    \begin{itemize}[
+        leftmargin=1.7in,
+        labelwidth=1.65in,
+        labelsep=0.05in,
+        align=left,
+        itemsep=2pt,
+        parsep=2pt,
+        topsep=-2pt
+    ]
+    \small
+    }{
+    \end{itemize}
+}
+% Command to define title + content for - tech stack
+\newcommand{\skillitem}[2]{%
+    \item[\textbf{#1}] #2
+}

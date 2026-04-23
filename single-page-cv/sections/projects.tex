@@ -1,10 +1,19 @@
-% -------------------- PROJECTS --------------------
-\resumeSubHeadingListStart
-    \resumeProjectHeading{\textbf{ % fillin some your awesome project
-    This is my latest awesome project} $|$
-    \href{https://yourproject.com/}{\underline{GitHub}}
-    \footnotesize\emph{OpenClaw, MCP, Gasp, or other fancy skills}} {Apr 2025 - Sep 2025}
-    \resumeItemListStart
+% --- PROJECTS ---
+%
+\resumeSubHeadingListStart % main container
+    \resumeProjectHeadingWithLink % title container
+        % #1 Project title
+        % #2 Link to ur project
+        % #3 Link label
+        % #4 technical that u use for the job
+        % #5 duration of ur work
+        {This is my latest awesome project}
+        {https://github.com/your-repo}
+        {GitHub}
+        {OpenClaw, MCP, Gasp, Unsloth}
+        {Apr 2025 - Sep 2025}
+    \resumeItemListStart % list-items
+        % u can add many list items as u need
         \resumeItem{
         Demonstrated technical expertise: Highlight design, development, or optimization actions.
         }
@@ -17,12 +26,14 @@
     \resumeItemListEnd
     %
 \resumeSubHeadingListEnd
-% Second Project or more
+%
 \resumeSubHeadingListStart
-    % National Bond
-    \resumeProjectHeading{\textbf{This is my second awesome project} $|$ 
-    \href{PROJECTTWOREPOURL}{\underline{Framer}}
-    \footnotesize\emph{AI tech, Agent tech, other tech, etc.}} {Nov 2024 - Jul 2025}
+    \resumeProjectHeadingWithLink
+        {This is my latest awesome project}
+        {https://github.com/your-repo}
+        {Host}
+        {OpenClaw, MCP, Gasp, Unsloth}
+        {Apr 2025 - Sep 2025}
     \resumeItemListStart
         \resumeItem{
         Designed and optimized solutions with clear improvements.Ensured reliability through validation and review.
@@ -31,16 +42,24 @@
         Enabled continuous improvement through adaptability and positive feedback cycles.
         }
     \resumeItemListEnd
-    %% Combine 2+ project
-    \resumeProjectHeading{\textbf{Multi-Project with same techs 1} $|$
-    \href{PROJECTTHREEREPOURL}{\underline{yourLink}}
-    \footnotesize\emph{your tool kits, 1, 2, 3, etc.}} {Jan 2024 - Jan 2025}
+\resumeSubHeadingListEnd
+% below is a special showcase of multiple task with very similar description or very close features
+\resumeSubHeadingListStart
+    \resumeProjectHeadingWithLink
+        {This is my latest awesome project}
+        {https://github.com/your-repo}
+        {Label}
+        {OpenClaw, MCP, Gasp, Unsloth}
+        {Apr 2025 - Sep 2025}
+        %
+    \vspace{-3pt} % the only margin u need to adjust
     %
-    \vspace{-2em}  % For Multi Project but same tech
-    % Project 2: blablablablabla
-    \resumeProjectHeading{\textbf{Multi-Project with same techs 2} $|$ 
-    \href{PROJECTFOURREPOURL}{\underline{yourLink}}
-    \footnotesize\emph{toolkits, 1, 2, etc.}} {Nov 2023 - Jan 2024}
+    \resumeProjectHeadingWithLink
+        {Multi-Project with same techs 2}
+        {https://github.com/your-repo}
+        {Link}
+        {toolkits, 1, 2, etc.}
+        {Nov 2023 - Jan 2024}
     \resumeItemListStart
         \resumeItem{
         Managed multiple projects with consistent technical approaches, ensuring efficiency and knowledge transfer.

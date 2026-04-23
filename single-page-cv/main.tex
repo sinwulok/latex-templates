@@ -1,7 +1,7 @@
 % ------------ ------------ ------------ ------------
 % Resume in Latex
 % Author: Maximilian (S.W.) LOK
-% Ref. templates of Github | Overleaf
+% Based templates on Github | Overleaf
 % 1. https://github.com/sb2nov/resume
 % 2. https://github.com/jakegut/resume
 % 3. Templates of Matty Doe's (Overleaf)
@@ -15,10 +15,8 @@
 %
 % ------------ PACKAGE OF ROOT ------------
 \input{packages/roots} % roots and configs
-% ------------ PACKAGE OF STYLE ------------
-\input{packages/styles} % layout and styles
-% ------------ PACKAGE OF ATBEGINDOCUMENT ------------
 \input{packages/adb} % atbegindocument settings
+\usepackage{styles/cvstyle}
 % ------------ #BEGIN OF DOCUMENT ------------
 %
 \begin{document}
@@ -27,7 +25,7 @@
 \section{Experience}\input{sections/experience}
 \section{Projects}\input{sections/projects}
 \section{Tenical Stack}\input{sections/techstack}
-\section{Qualifications}\input{sections/footer}
+\section{Qualifications}\input{sections/qualifications}
 %
 % -------------------- PAGE END  --------------------
 \vspace{-10pt} % Adjust vertical space after the two column environment
