@@ -14,7 +14,7 @@ A professional and easily customizable single-page CV LaTeX template. Sections a
 
 ## 預覽 | Preview
 
-![pdf](swlok_s_single_page_cv___templates.pdf)
+![pdf](pdf_preview.PNG)
 ![editor](editor_view.PNG)
 
 ---
