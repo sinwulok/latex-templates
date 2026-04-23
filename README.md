@@ -11,7 +11,12 @@ Overview
 - **Current contents**: One template package for a single-page CV — see [single-page-cv/README.md](single-page-cv/README.md). More templates may be added later.
 
 Repository structure
+
+```
+(root)
 - [single-page-cv/](single-page-cv/) — single-page CV template and development files.
+
+```
 
 How to use
 1. Install a LaTeX distribution (TeX Live, MiKTeX, etc.).
